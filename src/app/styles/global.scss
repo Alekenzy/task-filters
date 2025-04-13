@@ -1,0 +1,11 @@
+@use 'variables' as variables;
+@use 'mixins' as mixins;
+@use 'primeicons/primeicons.css' as primeicons;
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: variables.$color-secondary;
+}
