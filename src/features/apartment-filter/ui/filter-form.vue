@@ -1,43 +1,50 @@
 <template>
-  <form class="filter-form" @submit.prevent="applyFilter">
-    <pv-input-text
-      v-model="reactiveFilterState.address"
-      placeholder="Адрес..."
-      class="filter-form__input"
-      :disabled="loading"
-    />
-    <pv-input-number
-      v-model="reactiveFilterState.minArea"
-      :min="0"
-      placeholder="Мин. площадь"
-      class="filter-form__input"
-      :disabled="loading"
-    />
-    <pv-input-number
-      v-model="reactiveFilterState.maxArea"
-      :min="0"
-      placeholder="Макс. площадь"
-      class="filter-form__input"
-      :disabled="loading"
-    />
-    <pv-input-number
-      v-model="reactiveFilterState.minRooms"
-      :min="0"
-      placeholder="Мин. комнат"
-      class="filter-form__input"
-      :disabled="loading"
-    />
-    <pv-input-number
-      v-model="reactiveFilterState.maxRooms"
-      :min="0"
-      placeholder="Макс. комнат"
-      class="filter-form__input"
-      :disabled="loading"
-    />
+  <form class="filter-form" @submit.prevent="applyFilter" autocomplete="off">
+    <float-label variant="on" class="filter-form__field">
+      <pv-input-text inputId="address" v-model="reactiveFilterState.address" :disabled="loading" />
+      <label for="address">Адрес...</label>
+    </float-label>
+    <float-label variant="on" class="filter-form__field">
+      <pv-input-number
+        inputId="minArea"
+        v-model="reactiveFilterState.minArea"
+        :min="0"
+        :disabled="loading"
+      />
+      <label for="minArea">Мин. площадь</label>
+    </float-label>
+    <float-label variant="on" class="filter-form__field">
+      <pv-input-number
+        inputId="minArea"
+        v-model="reactiveFilterState.maxArea"
+        :min="0"
+        :disabled="loading"
+      />
+      <label for="minArea">Макс. площадь</label>
+    </float-label>
+    <float-label variant="on" class="filter-form__field">
+      <pv-input-number
+        inputId="minRooms"
+        v-model="reactiveFilterState.minRooms"
+        :min="0"
+        :disabled="loading"
+      />
+      <label for="minRooms">Мин. комнат</label>
+    </float-label>
+    <float-label variant="on" class="filter-form__field">
+      <pv-input-number
+        inputId="maxRooms"
+        v-model="reactiveFilterState.maxRooms"
+        :min="0"
+        :disabled="loading"
+      />
+      <label for="maxRooms">Макс. комнат</label>
+    </float-label>
 
     <pv-button
       label="Применить"
       class="filter-form__button"
+      icon="pi pi-search"
       type="submit"
       :loading="props.loading"
     />
@@ -49,6 +56,7 @@ import { reactive } from 'vue'
 import PvInputText from 'primevue/inputtext'
 import PvInputNumber from 'primevue/inputnumber'
 import PvButton from 'primevue/button'
+import FloatLabel from 'primevue/floatlabel'
 import type { BaseFilterQuery } from '#shared/config/apartments.ts'
 
 const props = defineProps<{
@@ -79,14 +87,27 @@ function applyFilter() {
 .filter-form {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-unit;
+  gap: $spacing-unit * 2;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: $spacing-unit * 2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 
-  &__input {
-    width: 180px;
-  }
+  &__field {
+    flex: 1 1 180px;
+    min-width: 140px;
 
-  &__button {
-    // Можно задать стили для кнопки
+    :deep() {
+      .p-inputtext,
+      .p-inputnumber {
+        width: 100%;
+        border-radius: 4px;
+        color: $text-primary;
+        background-color: #fff;
+        padding-right: 0;
+      }
+    }
   }
 }
 </style>

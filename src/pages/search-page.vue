@@ -11,13 +11,10 @@
 
     <apartments-list :apartments="apartments" class="search-page__results" />
 
-    <div
-      :style="`${loading ? 'opacity: 0.7; pointer-events: none; user-select: none' : 'opacity: 1; pointer-events: initial; user-select: initial'}`"
-    >
+    <div :style="`${loading ? 'opacity: 0.6; pointer-events: none;' : ''}`">
       <pv-paginator
-        class="search-page__paginator"
         :rows="pagination.size"
-        :rows-per-page-options="[5, 10, 20, 50, 100]"
+        :rows-per-page-options="[6, 12, 48, 100]"
         :totalRecords="totalCount"
         @page="onPageChange"
       />
@@ -43,7 +40,7 @@ const loading = ref(false)
 const error = ref('')
 const pagination = ref<BasePageQuery>({
   page: 1,
-  size: 10,
+  size: 6,
 })
 const filterState = ref<BaseFilterQuery>({})
 const totalCount = ref(0)
@@ -84,26 +81,48 @@ onMounted(getApartments)
 @use '#app/styles/variables' as *;
 
 .search-page {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: $spacing-unit * 2;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-unit * 2;
+  color: $text-primary;
 
   &__title {
-    margin-bottom: $spacing-unit * 2;
+    margin-bottom: $spacing-unit;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-primary;
   }
 
   &__filters {
-    margin-bottom: $spacing-unit * 2;
+    align-self: stretch;
   }
 
   &__results {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: $spacing-unit * 2;
-
-    /* Твои стили apartment-card => можно убрать, ведь вынесли в ApartmentsList */
+    align-self: stretch;
   }
 
   &__paginator {
     margin-top: $spacing-unit * 2;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: $spacing-unit;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+    .p-paginator .p-paginator-pages .p-paginator-page {
+      border-radius: 4px;
+      border: none;
+      color: $text-primary;
+    }
+    .p-paginator .p-paginator-icon {
+      color: $text-secondary;
+    }
+    .p-dropdown {
+      border-radius: 4px;
+    }
   }
 }
 </style>
