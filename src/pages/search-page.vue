@@ -40,7 +40,7 @@ const loading = ref(false)
 const error = ref('')
 const pagination = ref<BasePageQuery>({
   page: 1,
-  size: 6,
+  size: 12,
 })
 const filterState = ref<BaseFilterQuery>({})
 const totalCount = ref(0)
