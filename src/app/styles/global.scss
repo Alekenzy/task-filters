@@ -1,0 +1,10 @@
+@use "variables" as variables;
+@use "mixins" as mixins;
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: variables.$color-secondary;
+}

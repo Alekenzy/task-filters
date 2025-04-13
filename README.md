@@ -1,39 +1,110 @@
-# task-filters
+## Task Filters — Vue 3 + TypeScript + PrimeVue
 
-This template should help get you started developing with Vue 3 in Vite.
+Поисковая страница по квартирам с фильтрацией и пагинацией. Проект реализован на Vue 3 + TypeScript с использованием архитектуры Feature Sliced Design (FSD), UI библиотеки PrimeVue, SCSS и моков API через JSON.
 
-## Recommended IDE Setup
+Проект был создан с версиями:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+> **Node.js**: v22.14.0
 
-## Type Support for `.vue` Imports in TS
+> **npm**: v10.9.2
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+### 🚀 Установка и запуск
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+#### Установка зависимостей:
 
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Запуск в режиме разработки:
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Приложение откроется по умолчанию на `http://localhost:8080/`
 
-```sh
+#### Сборка для продакшена:
+
+```bash
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+#### Предпросмотр продакшен-сборки:
 
-```sh
-npm run lint
+```bash
+npm run preview
+```
+
+---
+
+### 📁 Структура проекта (FSD)
+
+```
+src/
+├── app/            # Инициализация приложения (роутер, глобальные стили и пр.)
+├── pages/          # Страницы: поиск и карточка квартиры
+├── widgets/        # Виджеты (крупные блоки UI)
+├── features/       # Функции: фильтрация квартир
+├── entities/       # Сущности: модель и компонент квартиры
+├── shared/         # Общие модули: ui-компоненты, api, утилиты
+```
+
+---
+
+### 🔧 Стек и зависимости
+
+- Vue 3 Composition API
+- TypeScript
+- PrimeVue + PrimeIcons
+- Vue Router
+- VueUse (useFetch и др.)
+- SCSS (с глобальными переменными и миксинами)
+- Feature Sliced Design
+- Vite
+
+---
+
+### ✅ Функциональность
+
+- 📦 Загрузка данных квартир из локального `apartments.json`
+- 🔍 Фильтрация по:
+    - адресу (строка)
+    - площади (от / до)
+    - количеству комнат (от / до)
+- 📄 Пагинация (10 карточек на страницу)
+- 📱 Адаптивная вёрстка (grid + flex)
+- 💡 Навигация между страницей списка и страницей детали квартиры
+
+---
+
+### 🗂 Прочее
+
+- Все alias настроены в `vite.config.ts` и `tsconfig.app.json` для соответствия FSD:
+    - `#app`, `#pages`, `#widgets`, `#features`, `#entities`, `#shared`
+- Глобальные стили SCSS подключаются через `additionalData`
+- ESLint, Prettier и Type Checking настроены через скрипты:
+  ```bash
+  npm run lint
+  npm run format
+  npm run type-check
+  ```
+
+---
+
+### 📸 Пример данных (apartments.json)
+
+```json
+[
+  {
+    "id": 1,
+    "address": "ул. Панфилова, д. 20, Алматы",
+    "area": 54,
+    "rooms": 2,
+    "image": "/images/apartment1.jpg"
+  }
+  // ...ещё 14 квартир
+]
 ```
