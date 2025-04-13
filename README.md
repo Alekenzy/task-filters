@@ -60,7 +60,6 @@ src/
 - TypeScript
 - PrimeVue + PrimeIcons
 - Vue Router
-- VueUse (useFetch и др.)
 - SCSS (с глобальными переменными и миксинами)
 - Feature Sliced Design
 - Vite

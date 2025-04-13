@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchPage from '#pages/SearchPage.vue'
-import ApartmentPage from '#pages/ApartmentPage.vue'
+import SearchPage from '#pages/search-page.vue'
+import ApartmentPage from '#pages/apartment-page.vue'
 
 const router = createRouter({
   history: createWebHistory(),

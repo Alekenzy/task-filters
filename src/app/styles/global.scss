@@ -1,5 +1,6 @@
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use 'variables' as variables;
+@use 'mixins' as mixins;
+@use 'primeicons/primeicons.css' as primeicons;
 
 body {
   font-family: sans-serif;
